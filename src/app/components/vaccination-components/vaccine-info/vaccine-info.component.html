@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let item of pageContent.vaccineInfo">
+      <app-common-card [vaccineInfo]="item"></app-common-card>
+    </div>
+  </div>
+  <div class="card booking_block">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="card-title card_stacing_header">Book your vaccine</h3>
+          <div class="row card_stacing">
+            <div class="col-md-4 booking_space">
+              <h6 class="card-subtitle mb-2 text-muted">Choose Vaccine</h6>
+              <div class="form-check" *ngFor="let item of pageContent.vaccineInfo">
+                <input class="form-check-input" type="radio" 
+                name="item.name" [attr.id]="item.id" 
+                [checked]="item.selected"
+                (click)="setData($event)">
+                <label class="form-check-label">
+                  {{item.name}}
+                </label>
+              </div>
+            </div>
+            <div class="col-md-8 booking_space">
+              <h6 class="card-subtitle mb-2 text-muted">Select Date</h6>
+              <div class="row">
+                <bs-datepicker-inline 
+                [bsValue]="bsInlineValue" 
+                [bsConfig]="{containerClass: 'theme-default'}"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                (bsValueChange)="onValueChange($event)">
+              </bs-datepicker-inline>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3 class="card-title card_stacing_header">Check details</h3>
+          <div class="card_stacing">
+            <div class="card_stacing_header"> 
+              <h6 class="card-subtitle mb-2 text-muted ">Enter Govt. Id No.</h6>
+              <input id="govtId" name="govtid" type="text" placeholder="Govt. Id No." [(ngModel)]="govtId">
+            </div>
+            <div>
+              <button class="btn btn-secondary" (click)="searchStatus($event)">Search</button>
+            </div>
+          </div>
+          <div class="card_stacing">
+            <div *ngIf="!userStatus.length && searchBtnClicked">
+                <p>No record found</p>
+            </div>
+            <div *ngIf="userStatus.length && searchBtnClicked">
+              <div class="card_stacing_header">
+                <h5>Details</h5>
+              </div>
+              <div class="row item-align">
+                <div class="col-md-4">
+                  <h6 class="card-subtitle mb-2 text-muted ">Name: </h6>
+                </div>
+                <div class="col-md-8">
+                  <h6>{{userStatus[0].name}}</h6>
+                </div>
+              </div>
+              <div class="row item-align">
+                <div class="col-md-4">
+                  <h6 class="card-subtitle mb-2 text-muted ">DOB: </h6>
+                </div>
+                <div class="col-md-8">
+                  <h6>{{userStatus[0].dob | date:'dd-MM-yyyy'}}</h6>
+                </div>
+              </div>
+              <div class="row item-align">
+                <div class="col-md-4">
+                  <h6 class="card-subtitle mb-2 text-muted ">Gender: </h6>
+                </div>
+                <div class="col-md-8">
+                  <h6>{{userStatus[0].gender}}</h6>
+                </div>
+              </div>
+              <div class="row item-align">
+                <div class="col-md-4">
+                  <h6 class="card-subtitle mb-2 text-muted ">Govt ID: </h6>
+                </div>
+                <div class="col-md-8">
+                  <h6>{{userStatus[0].govtId}}</h6>
+                </div>
+              </div>
+              <div class="row item-align">
+                <div class="col-md-4">
+                  <h6 class="card-subtitle mb-2 text-muted ">Booking Date: </h6>
+                </div>
+                <div class="col-md-8">
+                  <h6>{{userStatus[0].bookingInfo.booking_date}}</h6>
+                </div>
+              </div>
+              <div class="row item-align">
+                <div class="col-md-4">
+                  <h6 class="card-subtitle mb-2 text-muted ">Vaccine Name: </h6>
+                </div>
+                <div class="col-md-8">
+                  <h6>{{userStatus[0].bookingInfo.vaccine}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <a class="btn btn-secondary" (click)="proceedToBook()">Next</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

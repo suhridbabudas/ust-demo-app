@@ -1,0 +1,24 @@
+.booking_block{
+    margin: 20px;
+}
+
+.card_stacing{
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+
+.card_stacing_header{
+    margin-bottom: 20px;
+}
+
+.booking_space{
+    margin-bottom: 30px;
+}
+
+.form-check-input{
+    cursor: pointer;
+}
+
+.item-align{
+    align-items: baseline;
+}

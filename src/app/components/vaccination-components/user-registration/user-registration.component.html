@@ -1,0 +1,54 @@
+<main class="form-signin">
+    <form #userRegistration="ngForm" (ngSubmit)="onSubmit($event, userRegistration.value)">
+      <h1 class="h3 mb-3 fw-normal text-center">Please Register</h1>
+      <label for="inputName">Name</label>
+      <input
+        type="text"
+        id="inputName"
+        name="name"
+        class="form-control mb-3"
+        placeholder="Name"
+        ngModel
+        required
+        autofocus
+      />
+      <label for="inputGovtId">Government Id</label>
+      <input
+        type="text"
+        id="inputGovtId"
+        name="govtid"
+        class="form-control mb-3"
+        placeholder="Government Id"
+        ngModel
+        required
+      />
+      <label for="gender">Gender</label>
+      <select id="gender" class="form-control mb-3" name="gender" ngModel required>
+        <option disabled selected="selected">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
+      <label for="dob">Date of birth</label>
+        <input type="text"
+              id="dob"
+              class="form-control mb-3"
+              #dp="bsDatepicker"
+              placeholder="yyyy-mm-dd"
+              bsDatepicker
+              [bsConfig]="bsCalConfig"
+              placement="top"
+              name="dob"
+              ngModel
+              required>
+      <div class="row text-center button-space">
+        <div class="col-md-6 mb-3">
+          <a [routerLink]="['']" class="w-100 btn btn-lg btn-primary">Back</a>
+        </div>
+        <div class="col-md-6 mb-3">
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+        </div>
+      </div>
+    </form>
+  </main>
+  
